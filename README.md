@@ -52,13 +52,13 @@ For the purposes of these instructions, assume your database is called `Applicat
 e.g. `loadVCS "C:\Users\MyUserAccount\Documents\Access-Proj\MSAccess-VCS\"` - the trailing slash is required
 or `loadVCS`
 3. Edit your `VCS_ImportExport` and change the constant `INCLUDE_TABLES` to list any lookup tables that function more as part of your application code than as client data. (For example, "Countries", "Colors", and things like that.)
-4. Make sure there are references to DAO and ADOX - In the VBA editor, menu "Tools" > "References", select "Microsoft DAO 3.6 Object Library" and "Microsoft ADO Ext. 2.x for DLL and Security". Without this the "Database" and other references will cause compilation to fail with the message "Compile error: User-defined type not defined"
-5. If on compilation you get "Compile error: Method or data member not found" on "fi.Size" (Field), try re-ordering the dependencies to put ADO after DAO, as ADO (2.1) also defines field, but without the size member.
 
-Configuring export of table data
+Configuring export
 --------------------------------
 
 By default, no table data is exported. You must specify which tables' data to include in the export/import process by editing the `INCLUDE_TABLES` variable in the supplied module. For example you might have "Countries" or "Colors" tables that populate dropdown lists. You shouldn't include regular data tables containing actual records, because this data doesn't belong in version control.
+
+Additionally, if a type of data should not be exported, change the "Export_" constants to `False` in `VCS_ImportExport.bas`. Report, Query, Form, Macro, Module, and Table exports can be disabled individually.
 
 Supplied databases
 ------------------
@@ -113,5 +113,6 @@ https://github.com/timabell/msaccess-vcs-integration seems to currently be the
 most actively maintained branch, and [Tim Abell](https://github.com/timabell)
 will generally accept pull requests to keep the project alive but has minimal
 capacity to ensure correctness so please try and keep the quality as good as
-you can. Thanks! [jwbrookes](https://github.com/jwbrookes) also has commit
-access to this repository so can review and accept pull requests.
+you can. Thanks! Several other people have been made collaborators to help
+keep the repo alive. Better ideas for running this project would be welcome
+https://github.com/timabell/msaccess-vcs-integration/issues/32
